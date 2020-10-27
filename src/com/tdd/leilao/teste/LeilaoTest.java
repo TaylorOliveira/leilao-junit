@@ -76,7 +76,7 @@ class LeilaoTest {
 
         leilao.propoe(new Lance(taylor, 2000));
         leilao.propoe(new Lance(luennys, 3000));
-        leilao.dobrarLance(taylor);
+        leilao.dobraLance(taylor);
 
         assertEquals(4000, leilao.getLances().get(2).getValor(), 0.00001);
     }
