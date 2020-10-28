@@ -2,6 +2,7 @@ package com.tdd.leilao.teste;
 
 import static org.junit.Assert.assertEquals;
 
+import com.tdd.leilao.builder.CriadorDeLeilao;
 import com.tdd.leilao.dominio.Lance;
 import com.tdd.leilao.dominio.Leilao;
 import com.tdd.leilao.dominio.Usuario;
@@ -61,21 +62,21 @@ class LeilaoTest {
     @Test
     public void naoDeveAceitarMaisDoQue5LancesDeUmMesmoUsuario() {
 
-        Leilao leilao = new CriadorDeLeilao.leilao("Playstation 5")
+        Leilao leilao = new CriadorDeLeilao().leilao("Playstation 5")
                 .lance(this.steveJobs, 2000.0)
                 .lance(this.billGates, 3000.0)
                 .lance(this.steveJobs, 4000.0)
                 .lance(this.billGates, 5000.0)
                 .lance(this.steveJobs, 6000.0)
+                .lance(this.billGates, 7000.0)
+                .lance(this.steveJobs, 8000.0)
                 .lance(this.billGates, 9000.0)
                 .lance(this.steveJobs, 10000.0)
                 .lance(this.billGates, 11000.0)
-                .lance(this.steveJobs, 12000.0)
-                .lance(this.billGates, 15000.0);
+                .construe();
 
-        assertEquals(10, this.leilao.getLances().size());
-        assertEquals(11000.0, this.leilao.getLances().get(
-                this.leilao.getLances().size()-1).getValor(), 0.00001);
+        assertEquals(10, leilao.getLances().size());
+        assertEquals(11000.0, leilao.getLances().get(leilao.getLances().size()-1).getValor(), 0.00001);
     }
 
     @Test
