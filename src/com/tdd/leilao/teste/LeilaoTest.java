@@ -6,8 +6,10 @@ import com.tdd.leilao.builder.CriadorDeLeilao;
 import com.tdd.leilao.dominio.Lance;
 import com.tdd.leilao.dominio.Leilao;
 import com.tdd.leilao.dominio.Usuario;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class LeilaoTest {
@@ -17,6 +19,18 @@ class LeilaoTest {
     private Usuario billGates;
     private Usuario taylor;
     private Usuario luennys;
+
+    @BeforeAll
+    public static void setUpClass() {
+
+        System.out.println("Utilizando a anotação @BeforeClass JUnit");
+    }
+
+    @AfterAll
+    public static void setDownClass() {
+
+        System.out.println("Utilizando a anotação @AfterClass JUnit");
+    }
 
     @BeforeEach
     public void setUp() {
@@ -30,7 +44,8 @@ class LeilaoTest {
 
     @AfterEach
     public void setDown() {
-        System.out.println("Utilizando a a anotação AfterEach JUnit");
+
+        System.out.println("Utilizando a anotação @AfterEach JUnit");
     }
 
     @Test
