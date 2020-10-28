@@ -6,6 +6,7 @@ import com.tdd.leilao.builder.CriadorDeLeilao;
 import com.tdd.leilao.dominio.Lance;
 import com.tdd.leilao.dominio.Leilao;
 import com.tdd.leilao.dominio.Usuario;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,11 @@ class LeilaoTest {
         this.billGates = new Usuario("Bill Gates");
         this.taylor = new Usuario("Taylor Oliveira");
         this.luennys = new Usuario("Luennys de Almeida");
+    }
+
+    @AfterEach
+    public void setDown() {
+        System.out.println("Utilizando a a anotação AfterEach JUnit");
     }
 
     @Test
@@ -82,11 +88,14 @@ class LeilaoTest {
     @Test
     public void deveDobrarOUltimoLanceDado(){
 
-        this.leilao.propoe(new Lance(this.taylor, 2000));
-        this.leilao.propoe(new Lance(this.luennys, 3000));
-        this.leilao.dobraLance(this.taylor);
+        Leilao leilao = new CriadorDeLeilao().leilao("Playstation 5")
+                .lance(this.taylor, 2000)
+                .lance(this.luennys, 3000)
+                .construe();
 
-        assertEquals(4000, this.leilao.getLances().get(2).getValor(), 0.00001);
+        leilao.dobraLance(this.taylor);
+
+        assertEquals(4000, leilao.getLances().get(2).getValor(), 0.00001);
     }
 
     @Test
